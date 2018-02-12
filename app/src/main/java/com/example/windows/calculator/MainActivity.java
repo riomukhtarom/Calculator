@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView valueView;
+    String value;
     Double firstValue;
     Double secondValue;
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setView("0");
+                setValue("0");
             }
         });
 
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setView("1");
+                setValue("1");
             }
         });
 
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setView("2");
+                setValue("2");
             }
         });
 
@@ -85,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setView("3");
+                setValue("3");
             }
         });
 
@@ -92,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setView("4");
+                setValue("4");
             }
         });
 
@@ -99,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setView("5");
+                setValue("5");
             }
         });
 
@@ -106,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setView("6");
+                setValue("6");
             }
         });
 
@@ -113,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setView("7");
+                setValue("7");
             }
         });
 
@@ -120,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setView("8");
+                setValue("8");
             }
         });
 
@@ -127,12 +137,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setView("9");
+                setValue("9");
             }
         });
 
         buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                firstValue = Double.parseDouble(value);
+                resetValue();
                 setView("+");
             }
         });
@@ -140,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                firstValue = Double.parseDouble(value);
+                resetValue();
                 setView("-");
             }
         });
@@ -147,14 +162,26 @@ public class MainActivity extends AppCompatActivity {
         buttonTimes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("x");
+                firstValue = Double.parseDouble(value);
+                resetValue();
+                setView("*");
             }
         });
 
         buttonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                firstValue = Double.parseDouble(value);
+                resetValue();
                 setView("/");
+            }
+        });
+
+        buttonEquals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                secondValue = Double.parseDouble(value);
+
             }
         });
 
@@ -170,11 +197,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void resetValue(){
-
+        value = null;
     }
 
     public void resetAll(){
+        firstValue = null;
+        secondValue = null;
+    }
 
+    public void setValue(String number){
+        if(valueView==null){
+            value = number;
+        }else{
+            value = valueView.getText().toString()+number;
+        }
     }
 
 
