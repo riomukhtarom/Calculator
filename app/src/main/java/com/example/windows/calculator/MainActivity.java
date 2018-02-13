@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 firstValue = Double.parseDouble(value);
                 resetValue();
                 resetView();
+                //setView("+");
             }
         });
 
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 firstValue = Double.parseDouble(value);
                 resetView();
                 resetValue();
-                setView("-");
+                //setView("-");
             }
         });
 
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 firstValue = Double.parseDouble(value);
                 resetView();
                 resetValue();
-                setView("*");
+                //setView("*");
             }
         });
 
@@ -177,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 firstValue = Double.parseDouble(value);
                 resetView();
                 resetValue();
-                setView("/");
+                //setView("/");
             }
         });
 
@@ -186,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 secondValue = Double.parseDouble(value);
                 result = firstValue + secondValue;
+                resetView();
+                setView(Double.toString(result));
             }
         });
 
