@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     String value;
     Double firstValue;
     Double secondValue;
+    Double result;
 
 //    Button buttonZero,
 //            buttonOne,
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 firstValue = Double.parseDouble(value);
                 resetValue();
-                setView("+");
+                resetView();
             }
         });
 
@@ -154,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 firstValue = Double.parseDouble(value);
+                resetView();
                 resetValue();
                 setView("-");
             }
@@ -163,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 firstValue = Double.parseDouble(value);
+                resetView();
                 resetValue();
                 setView("*");
             }
@@ -172,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 firstValue = Double.parseDouble(value);
+                resetView();
                 resetValue();
                 setView("/");
             }
@@ -181,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 secondValue = Double.parseDouble(value);
-
+                result = firstValue + secondValue;
             }
         });
 
@@ -192,8 +196,12 @@ public class MainActivity extends AppCompatActivity {
             valueView.setText(valueView.getText()+v);
         }
         else{
-            valueView.setText(v);
+            valueView.setText(""+v);
         }
+    }
+
+    public void resetView(){
+        valueView.setText("");
     }
 
     public void resetValue(){
@@ -203,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
     public void resetAll(){
         firstValue = null;
         secondValue = null;
+        valueView = null;
     }
 
     public void setValue(String number){
