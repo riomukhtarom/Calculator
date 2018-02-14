@@ -13,6 +13,11 @@ public class MainActivity extends AppCompatActivity {
     Double firstValue;
     Double secondValue;
     Double result;
+    boolean operator = false;
+    boolean statusPlus = false;
+    boolean statusMinus = false;
+    boolean statusTimes = false;
+    boolean statusDivide = false;
 
 //    Button buttonZero,
 //            buttonOne,
@@ -55,90 +60,97 @@ public class MainActivity extends AppCompatActivity {
                 buttonTimes = findViewById(R.id.btn_times),
                 buttonDivide = findViewById(R.id.btn_divide),
                 buttonEquals = findViewById(R.id.btn_equals),
-                buttonPlusOrMinus = findViewById(R.id.btn_plusOrMinus),
                 buttonComma = findViewById(R.id.btn_comma),
-                buttonClear = findViewById(R.id.btn_clear),
-                buttonBackspace = findViewById(R.id.btn_backspace);
+                buttonClear = findViewById(R.id.btn_clear);
 
         valueView = findViewById(R.id.tv_value);
 
         buttonZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("0");
                 setValue("0");
+                setView("0");
             }
         });
 
         buttonOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("1");
                 setValue("1");
+                setView("1");
+                System.out.println(value);
             }
         });
 
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("2");
                 setValue("2");
+                setView("2");
+                System.out.println(value);
             }
         });
 
         buttonThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("3");
                 setValue("3");
+                setView("3");
+                System.out.println(value);
             }
         });
 
         buttonFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("4");
                 setValue("4");
+                setView("4");
+                System.out.println(value);
             }
         });
 
         buttonFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("5");
                 setValue("5");
+                setView("5");
+                System.out.println(value);
             }
         });
 
         buttonSix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("6");
                 setValue("6");
+                setView("6");
+                System.out.println(value);
             }
         });
 
         buttonSeven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("7");
                 setValue("7");
+                setView("7");
+                System.out.println(value);
             }
         });
 
         buttonEight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("8");
                 setValue("8");
+                setView("8");
+                System.out.println(value);
             }
         });
 
         buttonNine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView("9");
                 setValue("9");
+                setView("9");
+                System.out.println(value);
             }
         });
 
@@ -148,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
                 firstValue = Double.parseDouble(value);
                 resetValue();
                 resetView();
+                operator = true;
+                statusPlus = true;
                 //setView("+");
             }
         });
@@ -158,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
                 firstValue = Double.parseDouble(value);
                 resetView();
                 resetValue();
+                operator = true;
+                statusMinus = true;
                 //setView("-");
             }
         });
@@ -168,6 +184,8 @@ public class MainActivity extends AppCompatActivity {
                 firstValue = Double.parseDouble(value);
                 resetView();
                 resetValue();
+                operator = true;
+                statusTimes = true;
                 //setView("*");
             }
         });
@@ -178,6 +196,8 @@ public class MainActivity extends AppCompatActivity {
                 firstValue = Double.parseDouble(value);
                 resetView();
                 resetValue();
+                operator = true;
+                statusDivide = true;
                 //setView("/");
             }
         });
@@ -186,21 +206,53 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 secondValue = Double.parseDouble(value);
-                result = firstValue + secondValue;
+                setResult();
+                System.out.println(firstValue);
+                System.out.println(secondValue);
+                System.out.println(result);
                 resetView();
                 setView(Double.toString(result));
+                resetAll();
+                operator = true;
+            }
+        });
+
+        buttonComma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setValue(".");
+                setView(".");
+                System.out.println(value);
+            }
+        });
+
+        buttonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetView();
+                resetAll();
             }
         });
 
     }
 
     public void setView(String v){
+        System.out.println("sebelum"+operator);
+
         if(valueView !=null){
-            valueView.setText(valueView.getText()+v);
+            if(operator){
+                valueView.setText(""+v);
+                operator = false;
+            }
+            else {
+                valueView.setText(valueView.getText()+v);
+            }
         }
         else{
             valueView.setText(""+v);
         }
+
+        System.out.println("sesudah"+operator);
     }
 
     public void resetView(){
@@ -214,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
     public void resetAll(){
         firstValue = null;
         secondValue = null;
-        valueView = null;
+        value = null;
     }
 
     public void setValue(String number){
@@ -225,5 +277,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void setResult(){
+        System.out.println(statusPlus);
+        System.out.println(statusMinus);
+        System.out.println(statusTimes);
+        System.out.println(statusDivide);
+
+        if(statusPlus){
+            result = firstValue + secondValue;
+            statusPlus = false;
+        }
+        if(statusMinus){
+            result = firstValue - secondValue;
+            statusMinus = false;
+        }
+        if(statusTimes){
+            result = firstValue * secondValue;
+            statusTimes = false;
+        }
+        if(statusDivide){
+            result = firstValue / secondValue;
+            statusDivide = false;
+        }
+    }
 
 }
